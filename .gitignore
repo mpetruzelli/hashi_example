@@ -1,3 +1,4 @@
 secrets.tf
 *.terraform
 terraform.tfstate*
+*.DS_Store
