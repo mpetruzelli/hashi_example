@@ -1,0 +1,47 @@
+{
+  "Job": {
+    "ID": "api_dispatch",
+    "Datacenters": [
+      "dc1"
+    ],
+    "Type": "batch",
+    "Name": "api_dispatch",
+    "Namespace": "default",
+    "ParameterizedJob": {
+      "MetaRequired": [
+        "string"
+      ]
+    },
+    "TaskGroups": [
+      {
+        "Count": 1,
+        "Name": "api_dispatch",
+        "Tasks": [
+          {
+            "Config": {
+              "volumes": [
+                "tmp:/tmp"
+              ],
+              "args": [
+                "-c",
+                "echo '${NOMAD_META_string}'"
+              ],
+              "command": "/bin/echo",
+              "image": "${NOMAD_META_image}:${NOMAD_META_tag}"
+            },
+            "Driver": "docker",
+            "Meta": {
+              "tag": "18.04",
+              "image": "ubuntu"
+            },
+            "Name": "api_dispatch",
+            "Resources": {
+              "CPU": 500,
+              "MemoryMB": 256
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
